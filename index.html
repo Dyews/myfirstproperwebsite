@@ -1,106 +1,420 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Hello World</title>
-    <meta name="description" content="A tiny, modern Hello World webpage for Replit." />
+    <title>Rapid Iteration — Hello World</title>
+    <meta name="description" content="Rapid Iteration with fast feedback" />
     <style>
       :root {
-        --bg: #0b1020;
-        --card: #121a32;
-        --text: #e8eefc;
-        --muted: #a8b3cf;
-        --accent: #7aa2ff;
-        --accent-2: #61e4a8;
+        --bg: #0b0f14;
+        --text: #e6f1ff;
+        --muted: #9bb3c7;
+        --primary: #6ae3ff;
+        --primary-2: #9dff6a;
+        --danger: #ff6a6a;
+        --btn-bg: #121924;
+        --btn-hover: #1a2433;
       }
-      * { box-sizing: border-box; }
-      html, body { height: 100%; }
+
+      html, body {
+        height: 100%;
+      }
+
       body {
-        margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-        background: radial-gradient(1200px 800px at 70% -10%, rgba(97, 228, 168, 0.12), transparent 60%),
-                    radial-gradient(1000px 700px at -10% 120%, rgba(122, 162, 255, 0.12), transparent 60%),
-                    var(--bg);
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
+          "Segoe UI Emoji";
+        background: radial-gradient(1200px 800px at 70% 10%, #122032 0%, var(--bg) 60%);
         color: var(--text);
-        display: grid; place-items: center;
+        display: grid;
+        place-items: center;
+        overflow-x: hidden;
       }
-      .card {
-        width: min(92vw, 720px);
-        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-        border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
-        backdrop-filter: blur(6px);
-        border-radius: 20px; padding: 28px 28px 22px;
+
+      .hero {
+        text-align: center;
+        padding: 64px 20px;
+        max-width: 900px;
       }
-      h1 { font-size: clamp(28px, 5vw, 44px); margin: 6px 0 12px; }
-      p { margin: 0 0 18px; line-height: 1.5; color: var(--muted); }
-      .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-      .chip { font-size: 12px; letter-spacing: .4px; color: var(--muted); border: 1px solid rgba(255,255,255,0.12); padding: 6px 10px; border-radius: 999px; }
-      .btn {
-        appearance: none; border: 0; cursor: pointer; font-weight: 600;
-        padding: 12px 16px; border-radius: 12px; font-size: 14px;
-        background: linear-gradient(180deg, var(--accent), #4c7df0);
-        color: white; box-shadow: 0 8px 24px rgba(122,162,255,0.35);
-        transition: transform .06s ease, filter .2s ease; will-change: transform;
+
+      .title {
+        font-size: clamp(40px, 8vw, 84px);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 0 0 12px 0;
+        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-2) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
-      .btn:hover { filter: brightness(1.05); }
-      .btn:active { transform: translateY(1px); }
-      .btn.secondary { background: linear-gradient(180deg, var(--accent-2), #22c97a); box-shadow: 0 8px 24px rgba(34,201,122,0.35); }
-      .hello {
-        display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px;
-        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+
+      .subtitle {
+        font-size: clamp(16px, 2.5vw, 22px);
+        color: var(--muted);
+        margin: 0 0 32px 0;
       }
-      footer { margin-top: 18px; font-size: 12px; color: var(--muted); opacity: .9; }
-      a { color: var(--accent); text-decoration: none; }
-      a:hover { text-decoration: underline; }
+
+      .tagline {
+        font-size: clamp(14px, 2vw, 18px);
+        color: var(--muted);
+        margin: 0 0 28px 0;
+        opacity: 0.9;
+      }
+
+      .buttons {
+        display: inline-grid;
+        grid-auto-flow: column;
+        gap: 14px;
+      }
+
+      button {
+        appearance: none;
+        border: 1px solid #203044;
+        background: var(--btn-bg);
+        color: var(--text);
+        padding: 12px 20px;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+      }
+
+      button:hover {
+        background: var(--btn-hover);
+        transform: translateY(-1px);
+        border-color: #2b435e;
+      }
+
+      button:active {
+        transform: translateY(0);
+      }
+
+      .agree {
+        border-color: #2a4659;
+      }
+
+      .disagree {
+        border-color: #4a2a2a;
+      }
+
+      .footnote {
+        margin-top: 18px;
+        color: #7a8da3;
+        font-size: 13px;
+      }
+
+      /* Confetti canvas overlays content during celebration */
+      .confetti-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      /* Anti-fanfare: subtle grayscale flash and shake */
+      .nope {
+        filter: grayscale(0.9) brightness(0.9);
+        animation: shake 500ms ease-in-out;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20% { transform: translateX(-6px); }
+        40% { transform: translateX(6px); }
+        60% { transform: translateX(-4px); }
+        80% { transform: translateX(4px); }
+      }
+
+      /* Rain overlay for disagree */
+      .rain-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 60;
+      }
+
+      .drop {
+        position: absolute;
+        top: -20px;
+        font-size: 18px;
+        opacity: 0.9;
+        animation: fall linear forwards;
+      }
+
+      @keyframes fall {
+        to {
+          transform: translateY(110vh) rotate(10deg);
+          opacity: 0.4;
+        }
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
     </style>
   </head>
   <body>
-    <main class="card" role="main" aria-labelledby="title">
-      <div class="row">
-        <span class="chip" aria-hidden>🚀 Hello World</span>
-        <span class="chip" aria-hidden>Plain HTML • No build</span>
+    <main class="hero" aria-labelledby="page-title">
+      <h1 id="page-title" class="title">Rapid Iteration</h1>
+      <p class="subtitle">with fast feedback</p>
+      <p class="tagline">Is key to success</p>
+      <div class="buttons" role="group" aria-label="Agreement options">
+        <button class="agree" id="agreeBtn" aria-label="I agree to celebrate">I agree</button>
+        <button class="disagree" id="disagreeBtn" aria-label="I disagree to decline">I disagree</button>
       </div>
-
-      <h1 id="title">Hello, World! <span id="wave" aria-hidden>👋</span></h1>
-      <p>Congrats — you just shipped a tiny website. Edit this file and hit <strong>Run</strong> in Replit to see changes instantly.</p>
-
-      <div class="row" style="margin: 10px 0 16px;">
-        <button class="btn" id="btnGreet">Say hi</button>
-        <button class="btn secondary" id="btnTime">What time is it?</button>
-        <span class="hello" id="output" aria-live="polite">Ready ✨</span>
-      </div>
-
-      <footer>
-        Built for quick demos. Add your own styles, components, or a framework later.
-      </footer>
+      <div class="footnote" aria-live="polite" id="status"></div>
     </main>
 
-    <script>
-      const out = document.getElementById('output');
-      document.getElementById('btnGreet').addEventListener('click', () => {
-        const messages = [
-          'Hello there! 🎉',
-          'Hej världen! 🇸🇪',
-          'Hola, mundo! 🌎',
-          'Bonjour le monde! 🥖',
-          'Ciao, mondo! 🍝'
-        ];
-        out.textContent = messages[Math.floor(Math.random() * messages.length)];
-      });
-      document.getElementById('btnTime').addEventListener('click', () => {
-        const now = new Date();
-        out.textContent = `Local time: ${now.toLocaleTimeString()}`;
-      });
+    <canvas class="confetti-layer" id="confetti" aria-hidden="true"></canvas>
+    <div class="rain-layer" id="rain" aria-hidden="true"></div>
 
-      // Cute wave on load
-      const wave = document.getElementById('wave');
-      wave.animate([
-        { transform: 'rotate(0deg)' },
-        { transform: 'rotate(12deg)' },
-        { transform: 'rotate(-6deg)' },
-        { transform: 'rotate(0deg)' }
-      ], { duration: 900, iterations: 1, easing: 'ease-out' });
+    <script>
+      (function () {
+        const agreeBtn = document.getElementById('agreeBtn');
+        const disagreeBtn = document.getElementById('disagreeBtn');
+        const confettiCanvas = document.getElementById('confetti');
+        const rainLayer = document.getElementById('rain');
+        const statusEl = document.getElementById('status');
+
+        // Resize helpers
+        function fitCanvasToWindow(canvas) {
+          const dpr = Math.max(window.devicePixelRatio || 1, 1);
+          const { innerWidth: w, innerHeight: h } = window;
+          canvas.width = Math.floor(w * dpr);
+          canvas.height = Math.floor(h * dpr);
+          canvas.style.width = w + 'px';
+          canvas.style.height = h + 'px';
+          const ctx = canvas.getContext('2d');
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+          return ctx;
+        }
+
+        // Fireworks implementation (colorful bursts, ~2s)
+        function launchFireworks(durationMs = 2000) {
+          const ctx = fitCanvasToWindow(confettiCanvas);
+          let rect = confettiCanvas.getBoundingClientRect();
+          let width = rect.width;
+          let height = rect.height;
+          if (width === 0 || height === 0) {
+            // Ensure canvas is properly sized
+            rect = confettiCanvas.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+          }
+
+          const colors = ['#ff6ab2', '#6ae3ff', '#ffd36a', '#9dff6a', '#a18bff', '#ff956a'];
+          const gravity = 0.045;
+          const airDrag = 0.0025;
+          const rocketInterval = 50; // ms, much faster spawning for denser show
+
+          const rockets = [];
+          const particles = [];
+
+          function spawnRocket() {
+            const x = 60 + Math.random() * (width - 120);
+            const vx = (Math.random() - 0.5) * 0.9;
+            const vy = - (6.6 + Math.random() * 2.2);
+            rockets.push({ x, y: height + 10, vx, vy, life: 0, maxLife: 900 + Math.random() * 400, color: colors[(Math.random() * colors.length) | 0] });
+          }
+
+          function explode(x, y, baseColor) {
+            const count = 260 + (Math.random() * 100) | 0; // much more particles per burst
+            for (let i = 0; i < count; i++) {
+              const angle = Math.random() * Math.PI * 2;
+              const speed = 2.0 + Math.random() * 4.2;
+              particles.push({
+                x, y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                color: baseColor,
+                alpha: 1,
+                decay: 0.012 + Math.random() * 0.02,
+                size: 2.2 + Math.random() * 2.2,
+                sparkle: Math.random() < 0.25
+              });
+            }
+          }
+
+          let start = performance.now();
+          let lastSpawn = start - rocketInterval;
+          let raf;
+
+          function frame(now) {
+            const elapsed = now - start;
+
+            ctx.clearRect(0, 0, width, height);
+            ctx.save();
+            ctx.globalCompositeOperation = 'lighter';
+
+            // Spawn rockets while within duration
+            if (elapsed - lastSpawn >= rocketInterval && elapsed < durationMs) {
+              lastSpawn = now;
+              // spawn a larger batch each tick
+              for (let i = 0; i < 8; i++) spawnRocket();
+            }
+
+            // Update rockets
+            for (let i = rockets.length - 1; i >= 0; i--) {
+              const r = rockets[i];
+              r.life += 16;
+              r.vy += gravity * 0.2;
+              r.vx *= (1 - airDrag);
+              r.x += r.vx;
+              r.y += r.vy;
+
+              // Draw rocket trail
+              ctx.beginPath();
+              ctx.fillStyle = r.color;
+              ctx.arc(r.x, r.y, 2.2, 0, Math.PI * 2);
+              ctx.fill();
+
+              // Explode when slowing down or near apex/timeout
+              const shouldExplode = r.vy > -0.4 || r.life > r.maxLife || r.y < height * (0.25 + Math.random() * 0.15);
+              if (shouldExplode) {
+                explode(r.x, r.y, r.color);
+                rockets.splice(i, 1);
+              }
+            }
+
+            // Update explosion particles
+            for (let i = particles.length - 1; i >= 0; i--) {
+              const p = particles[i];
+              p.vx *= (1 - airDrag);
+              p.vy = p.vy + gravity;
+              p.x += p.vx;
+              p.y += p.vy;
+              p.alpha -= p.decay;
+
+              if (p.alpha <= 0) {
+                particles.splice(i, 1);
+                continue;
+              }
+
+              ctx.beginPath();
+              ctx.globalAlpha = Math.max(0, Math.min(1, p.alpha));
+              ctx.fillStyle = p.color;
+              ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+              ctx.fill();
+
+              // occasional sparkle
+              if (p.sparkle && Math.random() < 0.1) {
+                ctx.beginPath();
+                ctx.globalAlpha = Math.max(0, Math.min(1, p.alpha));
+                ctx.fillStyle = '#ffffff';
+                ctx.arc(p.x, p.y, p.size * 0.7, 0, Math.PI * 2);
+                ctx.fill();
+              }
+            }
+
+            ctx.restore();
+
+            const keepAnimating = elapsed < durationMs || rockets.length > 0 || particles.length > 0;
+            if (keepAnimating) {
+              raf = requestAnimationFrame(frame);
+            } else {
+              ctx.clearRect(0, 0, width, height);
+              cancelAnimationFrame(raf);
+            }
+          }
+
+          // Ensure something visible immediately
+          // seed with a number of initial rockets quickly
+          spawnRocket();
+          setTimeout(spawnRocket, 50);
+          setTimeout(spawnRocket, 100);
+          setTimeout(spawnRocket, 150);
+          setTimeout(spawnRocket, 200);
+          // several quick visible bursts to kick things off
+          for (let i = 0; i < 4; i++) {
+            explode(
+              width * (0.25 + Math.random() * 0.5),
+              height * (0.25 + Math.random() * 0.35),
+              colors[(Math.random() * colors.length) | 0]
+            );
+          }
+
+          cancelAnimationFrame(raf);
+          requestAnimationFrame(frame);
+        }
+
+        // Anti-fanfare: quick grayscale flash + falling droplets
+        function playAntiFanfare(durationMs = 3000, dropCount = 40) {
+          const body = document.body;
+          body.classList.add('nope');
+
+          const { innerWidth: w } = window;
+
+          function spawnDrops(n) {
+            for (let i = 0; i < n; i++) {
+              const e = document.createElement('div');
+              e.className = 'drop';
+              // Grey dot character to ensure a neutral look
+              e.textContent = '•';
+              const left = Math.random() * (w - 20);
+              const delay = Math.random() * 200; // small stagger inside burst
+              const dur = 1100 + Math.random() * 1200; // 1.1s–2.3s
+              e.style.left = left + 'px';
+              e.style.color = '#9aa3ad';
+              e.style.animationDuration = dur + 'ms';
+              e.style.animationDelay = delay + 'ms';
+              rainLayer.appendChild(e);
+              // Clean up each drop after it finishes animation
+              setTimeout(() => e.remove(), delay + dur + 150);
+            }
+          }
+
+          // Keep roughly the same perceived density, spread across duration
+          const perBurst = Math.max(6, Math.ceil(dropCount / 3));
+          const intervalMs = 500; // spawn twice per second
+          const bursts = Math.ceil(durationMs / intervalMs);
+          let emitted = 0;
+          spawnDrops(perBurst); // immediate first burst
+          emitted++;
+          const intervalId = setInterval(() => {
+            spawnDrops(perBurst);
+            emitted++;
+            if (emitted >= bursts) {
+              clearInterval(intervalId);
+            }
+          }, intervalMs);
+
+          setTimeout(() => body.classList.remove('nope'), durationMs);
+        }
+
+        // Status helper
+        function setStatus(text) {
+          statusEl.textContent = text;
+        }
+
+        // Wire up actions
+        agreeBtn.addEventListener('click', () => {
+          setStatus('🎇 Agreed — launching fireworks!');
+          launchFireworks(2000);
+        });
+
+        disagreeBtn.addEventListener('click', () => {
+          setStatus('🙃 Disagreed — noted. Keeping things grounded.');
+          playAntiFanfare();
+        });
+
+        // Keep canvas crisp on resize
+        window.addEventListener('resize', () => fitCanvasToWindow(confettiCanvas));
+
+        // Initial sizing
+        fitCanvasToWindow(confettiCanvas);
+      })();
     </script>
   </body>
-</html>
+  </html>
+
+
