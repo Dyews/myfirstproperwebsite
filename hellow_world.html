@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello World</title>
+    <meta name="description" content="A tiny, modern Hello World webpage for Replit." />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: #121a32;
+        --text: #e8eefc;
+        --muted: #a8b3cf;
+        --accent: #7aa2ff;
+        --accent-2: #61e4a8;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+        background: radial-gradient(1200px 800px at 70% -10%, rgba(97, 228, 168, 0.12), transparent 60%),
+                    radial-gradient(1000px 700px at -10% 120%, rgba(122, 162, 255, 0.12), transparent 60%),
+                    var(--bg);
+        color: var(--text);
+        display: grid; place-items: center;
+      }
+      .card {
+        width: min(92vw, 720px);
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 20px 60px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06);
+        backdrop-filter: blur(6px);
+        border-radius: 20px; padding: 28px 28px 22px;
+      }
+      h1 { font-size: clamp(28px, 5vw, 44px); margin: 6px 0 12px; }
+      p { margin: 0 0 18px; line-height: 1.5; color: var(--muted); }
+      .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+      .chip { font-size: 12px; letter-spacing: .4px; color: var(--muted); border: 1px solid rgba(255,255,255,0.12); padding: 6px 10px; border-radius: 999px; }
+      .btn {
+        appearance: none; border: 0; cursor: pointer; font-weight: 600;
+        padding: 12px 16px; border-radius: 12px; font-size: 14px;
+        background: linear-gradient(180deg, var(--accent), #4c7df0);
+        color: white; box-shadow: 0 8px 24px rgba(122,162,255,0.35);
+        transition: transform .06s ease, filter .2s ease; will-change: transform;
+      }
+      .btn:hover { filter: brightness(1.05); }
+      .btn:active { transform: translateY(1px); }
+      .btn.secondary { background: linear-gradient(180deg, var(--accent-2), #22c97a); box-shadow: 0 8px 24px rgba(34,201,122,0.35); }
+      .hello {
+        display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px;
+        background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      }
+      footer { margin-top: 18px; font-size: 12px; color: var(--muted); opacity: .9; }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+    </style>
+  </head>
+  <body>
+    <main class="card" role="main" aria-labelledby="title">
+      <div class="row">
+        <span class="chip" aria-hidden>🚀 Hello World</span>
+        <span class="chip" aria-hidden>Plain HTML • No build</span>
+      </div>
+
+      <h1 id="title">Hello, World! <span id="wave" aria-hidden>👋</span></h1>
+      <p>Congrats — you just shipped a tiny website. Edit this file and hit <strong>Run</strong> in Replit to see changes instantly.</p>
+
+      <div class="row" style="margin: 10px 0 16px;">
+        <button class="btn" id="btnGreet">Say hi</button>
+        <button class="btn secondary" id="btnTime">What time is it?</button>
+        <span class="hello" id="output" aria-live="polite">Ready ✨</span>
+      </div>
+
+      <footer>
+        Built for quick demos. Add your own styles, components, or a framework later.
+      </footer>
+    </main>
+
+    <script>
+      const out = document.getElementById('output');
+      document.getElementById('btnGreet').addEventListener('click', () => {
+        const messages = [
+          'Hello there! 🎉',
+          'Hej världen! 🇸🇪',
+          'Hola, mundo! 🌎',
+          'Bonjour le monde! 🥖',
+          'Ciao, mondo! 🍝'
+        ];
+        out.textContent = messages[Math.floor(Math.random() * messages.length)];
+      });
+      document.getElementById('btnTime').addEventListener('click', () => {
+        const now = new Date();
+        out.textContent = `Local time: ${now.toLocaleTimeString()}`;
+      });
+
+      // Cute wave on load
+      const wave = document.getElementById('wave');
+      wave.animate([
+        { transform: 'rotate(0deg)' },
+        { transform: 'rotate(12deg)' },
+        { transform: 'rotate(-6deg)' },
+        { transform: 'rotate(0deg)' }
+      ], { duration: 900, iterations: 1, easing: 'ease-out' });
+    </script>
+  </body>
+</html>
