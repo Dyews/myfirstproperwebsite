@@ -2,23 +2,48 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Camera</title>
+  <title>Live Camera</title>
+
+  <!-- HLS.js for non-Safari browsers -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 100%;
+      max-width: 1000px;
+      height: auto;
+    }
+  </style>
 </head>
-<body style="margin:0;background:#000;">
-  <video id="video" controls autoplay muted style="width:100%;height:auto;"></video>
+<body>
+
+  <video id="video" controls autoplay muted playsinline></video>
 
   <script>
     const video = document.getElementById('video');
     const src = 'https://cam.dyews.se/cam/index.m3u8';
 
     if (Hls.isSupported()) {
-      const hls = new Hls();
+      const hls = new Hls({
+        lowLatencyMode: true
+      });
       hls.loadSource(src);
       hls.attachMedia(video);
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari (native HLS)
       video.src = src;
+    } else {
+      video.innerHTML = 'Your browser does not support HLS.';
     }
   </script>
+
 </body>
 </html>
