@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Camera</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body style="margin:0;background:#000;">
+  <video id="video" controls autoplay muted style="width:100%;height:auto;"></video>
+
+  <script>
+    const video = document.getElementById('video');
+    const src = 'https://cam.dyews.se/cam/index.m3u8';
+
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(src);
+      hls.attachMedia(video);
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = src;
+    }
+  </script>
+</body>
+</html>
